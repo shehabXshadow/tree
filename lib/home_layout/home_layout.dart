@@ -12,7 +12,7 @@ class home_layout extends StatefulWidget {
 class _home_layoutState extends State<home_layout> {
   int currentIndex = 0;
   List<Widget> screens = [
-    new_die(),
+    NewDie(),
     totat_screen(),
     watch_screen(),
   ];
@@ -55,8 +55,8 @@ class _home_layoutState extends State<home_layout> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.sanitizer_outlined),
-            label: 'die',
+            icon: Icon(Icons.account_balance_wallet),
+            label: 'DATEBASE',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.accessible),
