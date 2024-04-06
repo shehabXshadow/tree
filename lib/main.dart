@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: home_layout(),
+      debugShowCheckedModeBanner: false, // This line hides the debug banner
     );
   }
 }

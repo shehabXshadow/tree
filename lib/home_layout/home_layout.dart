@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tree/new_die/Datebase.dart'; // Import necessary files
+import 'package:tree/new_die/Datebase.dart';
 import 'package:tree/new_toata/loaction_screen.dart';
-import 'package:tree/watch/watch_screen.dart'; // Import necessary files
+import 'package:tree/watch/watch_screen.dart';
 
 class home_layout extends StatefulWidget {
   @override
@@ -21,8 +21,8 @@ class _home_layoutState extends State<home_layout> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'IAM HERE',
-          style: TextStyle(color: Colors.white),
+          'AI Irrigation System',
+          style: TextStyle(color: Colors.purple.shade800),
         ),
         backgroundColor: Colors.cyan,
       ),
