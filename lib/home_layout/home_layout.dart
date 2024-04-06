@@ -13,7 +13,7 @@ class _home_layoutState extends State<home_layout> {
   List<Widget> screens = [
     NewDie(),
     LocationScreen(),
-    watch_screen(),
+    WatchScreen(),
   ];
 
   @override
@@ -22,9 +22,9 @@ class _home_layoutState extends State<home_layout> {
       appBar: AppBar(
         title: Text(
           'AI Irrigation System',
-          style: TextStyle(color: Colors.purple.shade800),
+          style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Colors.cyan,
+        backgroundColor: Colors.green,
       ),
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -49,7 +49,10 @@ class _home_layoutState extends State<home_layout> {
             label: 'watch',
           ),
         ],
+        selectedItemColor: Colors.green, // Set the selected item color to green
+        unselectedItemColor: Colors.black, // Set the unselected item color to black
       ),
     );
   }
 }
+
