@@ -89,7 +89,11 @@ class _LocationScreenState extends State<LocationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Weather Information'),
+        title: Text(
+          'Weather Information',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
       ),
       body: Center(
         child: Column(
@@ -98,17 +102,17 @@ class _LocationScreenState extends State<LocationScreen> {
             if (temperatureMax != null)
               Text(
                 'Temperature Max: ${temperatureMax!.toStringAsFixed(1)}°C',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),
               ),
             if (temperatureMin != null)
               Text(
                 'Temperature Min: ${temperatureMin!.toStringAsFixed(1)}°C',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),
               ),
             if (precipitation != null)
               Text(
                 'Precipitation: ${precipitation!.toStringAsFixed(1)} mm',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green),
               ),
 
             SizedBox(height: 20),
