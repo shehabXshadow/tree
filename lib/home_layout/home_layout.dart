@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:tree/new_die/die_screen.dart'; // Import necessary files
-import 'package:tree/new_toata/toata_screen.dart'; // Import necessary files
+import 'package:tree/new_die/Datebase.dart'; // Import necessary files
+import 'package:tree/new_toata/loaction_screen.dart';
 import 'package:tree/watch/watch_screen.dart'; // Import necessary files
 
 class home_layout extends StatefulWidget {
@@ -13,19 +12,9 @@ class _home_layoutState extends State<home_layout> {
   int currentIndex = 0;
   List<Widget> screens = [
     NewDie(),
-    totat_screen(),
+    LocationScreen(),
     watch_screen(),
   ];
-
-  void getLocation() async {
-    // Get the current position
-    Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
-
-    // Do something with the position
-    print(position);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +27,6 @@ class _home_layoutState extends State<home_layout> {
         backgroundColor: Colors.cyan,
       ),
       body: screens[currentIndex],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          getLocation();
-        },
-        child: Icon(Icons.location_on),
-        tooltip: 'Get Location', // Tooltip text
-      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,
@@ -59,8 +41,8 @@ class _home_layoutState extends State<home_layout> {
             label: 'DATEBASE',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.accessible),
-            label: 'toata',
+            icon: Icon(Icons.add_location),
+            label: 'LocationScreen',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.access_alarms_rounded),

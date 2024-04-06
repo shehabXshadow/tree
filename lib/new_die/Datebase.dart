@@ -6,13 +6,52 @@ class NewDie extends StatefulWidget {
 }
 
 class new_die extends State<NewDie> {
-  String? selectedPlant; // Declare selectedPlant variable
-  String? selectedSoilType; // Declare selectedSoilType variable
-  String? moistureValue;
-  String? temperatureValue;//// Declare moistureValue variable
+  String? selectedPlant;
+  String? selectedSoilType;
+  String? temperatureMax;
+  String? temperatureMin;
+  String? precipitation;
+  String? historyFrom; // New variable for history from date
+  String? historyTo; // New variable for history to date
+  String? selectedPlantType; // New variable for selected plant type
 
-  List<String> plantOptions = ['Tomato', 'Potato', 'Carrot', 'Nothing']; // Options for plant Dropdown
-  List<String> soilTypeOptions = ['Clay', 'Loam', 'Sand', 'Silt']; // Options for soil type Dropdown
+  List<String> plantOptions = [
+    'Barley',
+    'Cotton',
+    'DryBean',
+    'Maize',
+    'PaddyRice',
+    'Potato',
+    'Quinoa',
+    'Sorghum',
+    'Soybean',
+    'SugarBeet',
+    'SugarCane',
+    'Sunflower',
+    'Tomato',
+    'Wheat',
+    'Teff',
+    'Cassava',
+    'Gress'
+  ];
+
+  List<String> soilTypeOptions = [
+    'Clay',
+    'ClayLoam',
+    'Loam',
+    'LoamySand',
+    'Sand',
+    'SandyClay',
+    'SandyClayLoam',
+    'SandyLoam',
+    'Silt',
+    'SiltClayLoam',
+    'SiltLoam',
+    'SiltClay',
+    'Paddy'
+  ];
+
+  List<String> plantTypeOptions = ['type 1', 'type 2', 'type 3', 'type 4'];
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +69,33 @@ class new_die extends State<NewDie> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+            ),
+            SizedBox(height: 20.0),
+            // Plant Type dropdown
+            Row(
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      labelText: 'Plant Type',
+                      border: OutlineInputBorder(),
+                    ),
+                    controller: TextEditingController(
+                      text: selectedPlantType ?? '',
+                    ),
+                    onTap: () {
+                      _showOptionsDialog(context, 'Select Plant Type', plantTypeOptions);
+                    },
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    _showOptionsDialog(context, 'Select Plant Type', plantTypeOptions);
+                  },
+                  icon: Icon(Icons.arrow_drop_down),
+                ),
+              ],
             ),
             SizedBox(height: 20.0),
             // Plant dropdown
@@ -86,33 +152,81 @@ class new_die extends State<NewDie> {
               ],
             ),
             SizedBox(height: 20.0),
-            // Moisture TextFormField
+            // Temperature Max TextFormField
             Container(
-              width: MediaQuery.of(context).size.width * 0.8, // Adjust the width as needed
+              width: MediaQuery.of(context).size.width * 0.8,
               child: TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'Moisture',
+                  labelText: 'Temperature Max',
                   border: OutlineInputBorder(),
                 ),
                 onChanged: (value) {
                   setState(() {
-                    moistureValue = value;
+                    temperatureMax = value;
                   });
                 },
               ),
             ),
             SizedBox(height: 20.0),
-            // Temperature TextFormField
+            // Temperature Min TextFormField
             Container(
-              width: MediaQuery.of(context).size.width * 0.8, // Adjust the width as needed
+              width: MediaQuery.of(context).size.width * 0.8,
               child: TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'Temperature',
+                  labelText: 'Temperature Min',
                   border: OutlineInputBorder(),
                 ),
                 onChanged: (value) {
                   setState(() {
-                    temperatureValue = value;
+                    temperatureMin = value;
+                  });
+                },
+              ),
+            ),
+            SizedBox(height: 20.0),
+            // Precipitation TextFormField
+            Container(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Precipitation',
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    precipitation = value;
+                  });
+                },
+              ),
+            ),
+            SizedBox(height: 20.0),
+            // History From TextFormField
+            Container(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'History From (YYYY/MM/DD)',
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    historyFrom = value;
+                  });
+                },
+              ),
+            ),
+            SizedBox(height: 20.0),
+            // History To TextFormField
+            Container(
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'History To (YYYY/MM/DD)',
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    historyTo = value;
                   });
                 },
               ),
@@ -148,6 +262,8 @@ class new_die extends State<NewDie> {
                         selectedPlant = option;
                       } else if (title == 'Select Soil Type') {
                         selectedSoilType = option;
+                      } else if (title == 'Select Plant Type') {
+                        selectedPlantType = option; // Set selected plant type
                       }
                     });
                     Navigator.pop(context); // Close the dialog
@@ -162,9 +278,13 @@ class new_die extends State<NewDie> {
   }
 
   void printSelectedValues() {
+    print('Selected Plant Type: $selectedPlantType'); // Print selected plant type
     print('Selected Plant: $selectedPlant');
     print('Selected Soil Type: $selectedSoilType');
-    print('Moisture Value: $moistureValue');
-    print('Temperature Value: $temperatureValue');
+    print('Temperature Max: $temperatureMax');
+    print('Temperature Min: $temperatureMin');
+    print('Precipitation: $precipitation');
+    print('History From: $historyFrom');
+    print('History To: $historyTo');
   }
 }
